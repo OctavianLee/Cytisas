@@ -1,8 +1,12 @@
+"""
+    Registry for task queue.
+"""
 import cPickle as pickle
-from task import Task
+from cytisas.tqueue.task import Task
 
 
 class Registry(object):
+    """A registry for task queue."""
 
     def __init__(self):
         self._registry = {}
@@ -33,7 +37,7 @@ class Registry(object):
     def unregister(self, redis_data):
         """Unregister a task.
 
-        :params: redis_data: the data get from redis. 
+        :params: redis_data: the data get from redis.
         :returns: the unregistered task.
         """
         task = Task()
@@ -42,10 +46,12 @@ class Registry(object):
         if not func_data:
             return None
         try:
-            (task._module_name, task._func_name,
-                task._args, task._kwargs) = pickle.loads(func_data)
-        except Exception as e:
-            raise e
+            (task._module_name,
+             task._func_name,
+             task._args,
+             task._kwargs) = pickle.loads(func_data)
+        except Exception as exc:
+            raise exc
         task_name = self.get_task_string(task)
         if task_name not in self._registry:
             return None

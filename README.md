@@ -16,3 +16,4 @@ It will be a great job.
 
 + 2015-07-30 1H Add the basic structure of a task queue. By Octavian
 + 2015-08-27 2H Add the basic structure of a logger. By Octavian
++ 2015-08-27 2H Fix code styles from the tqueue module. By Octavian

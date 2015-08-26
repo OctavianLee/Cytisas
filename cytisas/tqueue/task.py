@@ -1,3 +1,6 @@
+"""
+    Task for task queue.
+"""
 import importlib
 import uuid
 
@@ -30,37 +33,40 @@ class Task(object):
         self._kwargs = None
 
     @property
-    def id(self):
+    def tid(self):
+        """Get a task id."""
         if self._id:
             self._id = str(uuid.uuid1())
         return self._id
 
-    @id.setter
-    def id(self, value):
+    @tid.setter
+    def tid(self, value):
+        """Set a task id."""
         self._id = value
 
     @property
     def module_name(self):
-        return self._module_name
-
-    @property
-    def module_name(self):
+        """Get a module name."""
         return self._module_name
 
     @property
     def func_name(self):
+        """Get a func name."""
         return self._func_name
 
     @property
     def args(self):
+        """Get args."""
         return self._args
 
     @property
     def kwargs(self):
+        """Get kargs."""
         return self._kwargs
 
     @property
     def func(self):
+        """Get a function"""
         if not (self.module_name and self.func_name):
             return
         module = importlib.import_module(self.module_name)
@@ -68,6 +74,7 @@ class Task(object):
 
     @property
     def func_data(self):
+        """Return the basic func data."""
         return (
             self.module_name, self.func_name,
             self.args, self.kwargs

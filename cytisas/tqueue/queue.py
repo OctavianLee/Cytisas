@@ -1,5 +1,8 @@
+"""
+    A task queue prototype.
+"""
 from bauhinia.queues import Queue
-from registry import registry
+from cytisas.tqueue.registry import registry
 
 
 class TaskQueue(Queue):
